@@ -1,0 +1,49 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudTextField @bind-Value="name"
+                      Label="Name"
+                      Margin="Margin.Dense"
+                      Variant="Variant.Outlined"
+                      >
+        </MudTextField>
+        <MudTextField T="string"
+                      Label="Description"
+                      Margin="Margin.Dense"
+                      Variant="Variant.Outlined"
+                      @bind-Value="description"
+                      AutoGrow
+                      Lines="4"/>
+        <MudIconButton Icon="@Icons.Material.Filled.Add"
+                       Color="Color.Primary" aria-label="Add"
+                       OnClick="AddSubTask">Add SubTask</MudIconButton>
+        @foreach (var item in subTask)
+        {
+            <MudStack Row AlignItems="AlignItems.Center">
+                <MudIconButton Icon="@Icons.Material.Filled.Remove"
+                               Color="Color.Error" aria-label="Remove"
+                               OnClick="@(()=>RemoveSubTask(item))"></MudIconButton>
+                <MudTextField T=string
+                              ValueChanged="@((string value) => SubTaskValueChanged(item, value))"
+                              Value="item.Task"
+                              Margin="Margin.Dense"
+                              Variant="Variant.Outlined"></MudTextField>
+            </MudStack>
+        }
+
+        <MudSelect T="Priority"
+                   Label="Priority"
+                   Variant="Variant.Outlined"
+                   AnchorOrigin="Origin.BottomCenter"
+                   Margin="Margin.Dense"
+                   @bind-Value="priority">
+            <MudSelectItem T="Priority" Value="@(Priority.Low)" />
+            <MudSelectItem T="Priority" Value="@(Priority.Medium)" />
+            <MudSelectItem T="Priority" Value="@(Priority.High)" />
+            <MudSelectItem T="Priority" Value="@(Priority.Hot)" />
+        </MudSelect>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>

@@ -1,0 +1,53 @@
+﻿<MudPaper>
+    <MudGrid Class="align-center pa-4">
+        <MudItem xs="12" Class="align-start d-flex">
+            <MudStack Row
+                      Class="align-center">
+                <MudText Typo="Typo.h6">@todo!.Name</MudText>
+
+                @switch (todo!.Priority)
+                {
+                    case Priority.Low:
+                        <MudChip Color="Color.Dark">Low</MudChip>
+                        break;
+                    case Priority.Medium:
+                        <MudChip Color="Color.Info">Medium</MudChip>
+                        break;
+                    case Priority.High:
+                        <MudChip Color="Color.Warning">High</MudChip>
+                        break;
+                    case Priority.Hot:
+                        <MudChip Color="Color.Error">Hot</MudChip>
+                        break;
+                }
+            </MudStack>
+            <MudSpacer />
+            <MudStack Row>
+                <MudIconButton OnClick="EditToDo"
+                               Icon="@Icons.Material.Filled.Edit"
+                               Color="Color.Primary" />
+                <MudIconButton OnClick="DeleteToDo"
+                               Icon="@Icons.Material.Filled.Delete"
+                               Color="Color.Error" />
+            </MudStack>
+        </MudItem>
+        <MudItem xs="12">
+            @foreach (var item in todo!.SubTasks)
+            {
+                var value = item.isComplete;
+                var task = item.Task;
+                <MudCheckBox T=bool
+                             Value="value"
+                             ValueChanged="(bool value)=>ChangeTaskCompletion(item, value)"
+                             Color="Color.Primary">@task</MudCheckBox>
+            }
+        </MudItem>
+    </MudGrid>
+    <MudProgressLinear Color="Color.Primary"
+                       Rounded="true"
+                       Size="Size.Small"
+                       Value="@Progress" />
+</MudPaper>
+
+
+

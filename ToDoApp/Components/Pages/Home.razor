@@ -1,0 +1,29 @@
+﻿@page "/"
+
+<MudText Class="pa-4"
+         Typo="Typo.h3">ToDo List</MudText>
+
+
+@if (todos!.Count() > 0 && todos is not null)
+{
+    <MudGrid>
+        @foreach (ToDo todo in todos)
+        {
+            <MudItem xs="12">
+                <ToDoCard todo="todo"
+                          OnRefresh="Refresh">
+                </ToDoCard>
+            </MudItem>
+        }
+    </MudGrid>
+}
+else
+{
+    <MudText Class="pa-4"
+             Typo="Typo.body1">Add a new ToDo to begin tracking tasks...</MudText>
+}
+
+<MudFab OnClick="OpenAddToDoDialog"
+        Color="Color.Primary"
+        StartIcon="@Icons.Material.Filled.Add"
+        Style="position: fixed; right: 0; bottom: 0; margin: 16px;" />
