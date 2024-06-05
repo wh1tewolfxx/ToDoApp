@@ -1,6 +1,6 @@
 # ToDoApp
 
-A sample .NET MAUI Blazor Hybrid ToDo application, built using MudBlazor UI Components and LiteDB an embedded NoSQL database for .NET.
+A simple .NET MAUI Blazor Hybrid ToDo application, built using MudBlazor UI Components and LiteDB an embedded NoSQL database for .NET.
 
 - [LiteDB](https://www.litedb.org/)
 - [MudBlazor](https://mudblazor.com/)
